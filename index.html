@@ -1,0 +1,1157 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jurnal Palembang - Portal Berita Terkini Kota Palembang</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Reset dan variabel CSS */
+        :root {
+            --primary: #0d47a1;
+            --secondary: #f57c00;
+            --accent: #c62828;
+            --light: #f5f5f5;
+            --dark: #1a237e;
+            --gray: #546e7a;
+            --transition: all 0.3s ease;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            --shadow-hover: 0 8px 24px rgba(0, 0, 0, 0.15);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f9fa;
+        }
+        
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        
+        ul {
+            list-style: none;
+        }
+        
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--primary);
+            color: white;
+            padding: 10px 24px;
+            border-radius: 4px;
+            font-weight: 600;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            background-color: var(--dark);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-hover);
+        }
+        
+        .btn-secondary {
+            background-color: var(--secondary);
+        }
+        
+        .btn-secondary:hover {
+            background-color: #e65100;
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+        
+        .btn-outline:hover {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .section-title {
+            display: flex;
+            align-items: center;
+            margin: 40px 0 25px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid var(--secondary);
+            position: relative;
+        }
+        
+        .section-title h2 {
+            font-size: 1.8rem;
+            color: var(--primary);
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 3px;
+            background-color: var(--primary);
+            bottom: -2px;
+            left: 0;
+        }
+        
+        .badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            margin-right: 8px;
+            margin-bottom: 8px;
+        }
+        
+        .badge-news {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .badge-hot {
+            background-color: var(--accent);
+            color: white;
+        }
+        
+        .badge-feature {
+            background-color: var(--secondary);
+            color: white;
+        }
+        
+        /* Header */
+        header {
+            background-color: white;
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .top-bar {
+            background-color: var(--dark);
+            color: white;
+            padding: 8px 0;
+            font-size: 0.9rem;
+        }
+        
+        .top-bar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .top-bar i {
+            color: var(--secondary);
+            margin-right: 8px;
+        }
+        
+        .date-time {
+            display: flex;
+            gap: 20px;
+        }
+        
+        .header-main {
+            padding: 20px 0;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .logo-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, var(--primary), var(--dark));
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2.2rem;
+            box-shadow: var(--shadow);
+        }
+        
+        .logo-text h1 {
+            font-size: 2.2rem;
+            color: var(--primary);
+            line-height: 1.1;
+        }
+        
+        .logo-text p {
+            font-size: 0.95rem;
+            color: var(--gray);
+            font-style: italic;
+        }
+        
+        .header-tagline {
+            background-color: var(--light);
+            padding: 12px 25px;
+            border-radius: 8px;
+            border-left: 5px solid var(--secondary);
+            font-weight: 600;
+            color: var(--dark);
+            max-width: 400px;
+        }
+        
+        /* Navigation */
+        .main-nav {
+            background-color: var(--primary);
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .nav-links {
+            display: flex;
+        }
+        
+        .nav-links a {
+            color: white;
+            padding: 18px 22px;
+            font-weight: 600;
+            transition: var(--transition);
+            display: inline-block;
+            position: relative;
+        }
+        
+        .nav-links a:hover, .nav-links .active {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 3px;
+            background-color: var(--secondary);
+            bottom: 0;
+            left: 22px;
+            transition: var(--transition);
+        }
+        
+        .nav-links a:hover::after, .nav-links .active::after {
+            width: calc(100% - 44px);
+        }
+        
+        .nav-tools {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .search-box {
+            display: flex;
+            align-items: center;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+            padding: 8px 15px;
+        }
+        
+        .search-box input {
+            background: transparent;
+            border: none;
+            color: white;
+            width: 200px;
+            padding: 5px;
+            outline: none;
+        }
+        
+        .search-box input::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        .search-box i {
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        .mobile-toggle {
+            display: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1599601953846-8a8d7245415c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 100px 0;
+            margin-bottom: 40px;
+        }
+        
+        .hero-content {
+            max-width: 700px;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            line-height: 1.2;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            max-width: 600px;
+        }
+        
+        .hero-buttons {
+            display: flex;
+            gap: 15px;
+        }
+        
+        /* Breaking News */
+        .breaking-news {
+            background-color: var(--accent);
+            color: white;
+            padding: 15px 0;
+            margin-bottom: 30px;
+        }
+        
+        .breaking-container {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        
+        .breaking-label {
+            background-color: white;
+            color: var(--accent);
+            padding: 8px 18px;
+            border-radius: 4px;
+            font-weight: 800;
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .breaking-text {
+            flex: 1;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+        
+        /* Main Content */
+        .main-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+        
+        /* Featured News */
+        .featured-news {
+            margin-bottom: 40px;
+        }
+        
+        .featured-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+        }
+        
+        .featured-item {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+        
+        .featured-item:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-hover);
+        }
+        
+        .featured-item.main {
+            grid-column: 1 / -1;
+            display: flex;
+        }
+        
+        .featured-img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+        
+        .featured-item.main .featured-img {
+            width: 50%;
+            height: 350px;
+        }
+        
+        .featured-content {
+            padding: 25px;
+        }
+        
+        .featured-item.main .featured-content {
+            width: 50%;
+        }
+        
+        .featured-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 12px;
+            line-height: 1.4;
+        }
+        
+        .featured-content p {
+            color: var(--gray);
+            margin-bottom: 15px;
+        }
+        
+        .news-meta {
+            display: flex;
+            justify-content: space-between;
+            color: var(--gray);
+            font-size: 0.9rem;
+            border-top: 1px solid #eee;
+            padding-top: 15px;
+        }
+        
+        /* Latest News */
+        .latest-news {
+            margin-bottom: 40px;
+        }
+        
+        .latest-list {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+        
+        .latest-item {
+            display: flex;
+            padding: 20px;
+            border-bottom: 1px solid #eee;
+            transition: var(--transition);
+        }
+        
+        .latest-item:last-child {
+            border-bottom: none;
+        }
+        
+        .latest-item:hover {
+            background-color: #f8f9fa;
+        }
+        
+        .latest-img {
+            width: 120px;
+            height: 90px;
+            object-fit: cover;
+            border-radius: 6px;
+            margin-right: 20px;
+            flex-shrink: 0;
+        }
+        
+        .latest-content h4 {
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+            line-height: 1.4;
+        }
+        
+        /* Palembang Culture */
+        .palembang-culture {
+            background-color: white;
+            border-radius: 8px;
+            padding: 30px;
+            margin-bottom: 40px;
+            box-shadow: var(--shadow);
+            border-top: 5px solid var(--secondary);
+        }
+        
+        .culture-title {
+            color: var(--primary);
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .culture-title i {
+            color: var(--secondary);
+        }
+        
+        .culture-content {
+            display: flex;
+            gap: 25px;
+            align-items: center;
+        }
+        
+        .culture-img {
+            width: 200px;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 8px;
+            flex-shrink: 0;
+        }
+        
+        .culture-text p {
+            color: var(--gray);
+            margin-bottom: 15px;
+        }
+        
+        /* Sidebar */
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+        
+        .sidebar-widget {
+            background-color: white;
+            border-radius: 8px;
+            padding: 25px;
+            box-shadow: var(--shadow);
+        }
+        
+        .widget-title {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--secondary);
+            color: var(--primary);
+        }
+        
+        .popular-list li {
+            padding: 12px 0;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .popular-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .popular-number {
+            background-color: var(--primary);
+            color: white;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.9rem;
+            flex-shrink: 0;
+        }
+        
+        .popular-list li:nth-child(1) .popular-number {
+            background-color: var(--accent);
+        }
+        
+        .popular-list li:nth-child(2) .popular-number {
+            background-color: var(--secondary);
+        }
+        
+        .category-list li {
+            margin-bottom: 12px;
+        }
+        
+        .category-list a {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 15px;
+            background-color: #f8f9fa;
+            border-radius: 6px;
+            transition: var(--transition);
+        }
+        
+        .category-list a:hover {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .category-count {
+            background-color: #e9ecef;
+            padding: 2px 10px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+        }
+        
+        .category-list a:hover .category-count {
+            background-color: rgba(255, 255, 255, 0.3);
+        }
+        
+        /* Video Section */
+        .video-section {
+            margin: 50px 0;
+        }
+        
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+        
+        .video-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+        
+        .video-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-hover);
+        }
+        
+        .video-thumbnail {
+            height: 180px;
+            background-color: #333;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+            position: relative;
+        }
+        
+        .video-play {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(0, 0, 0, 0.7);
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .video-content {
+            padding: 20px;
+        }
+        
+        .video-content h3 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            line-height: 1.4;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 60px 0 20px;
+            margin-top: 60px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: white;
+        }
+        
+        .footer-logo span {
+            color: var(--secondary);
+        }
+        
+        .footer-about p {
+            color: #bbb;
+            margin-bottom: 20px;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 12px;
+        }
+        
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: #2c387e;
+            border-radius: 50%;
+            transition: var(--transition);
+        }
+        
+        .social-links a:hover {
+            background-color: var(--secondary);
+            transform: translateY(-3px);
+        }
+        
+        .footer-links h3 {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-links h3::after {
+            content: '';
+            position: absolute;
+            width: 40px;
+            height: 3px;
+            background-color: var(--secondary);
+            bottom: 0;
+            left: 0;
+        }
+        
+        .footer-links ul li {
+            margin-bottom: 12px;
+        }
+        
+        .footer-links ul li a {
+            color: #bbb;
+            transition: var(--transition);
+        }
+        
+        .footer-links ul li a:hover {
+            color: var(--secondary);
+            padding-left: 5px;
+        }
+        
+        .contact-info li {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 15px;
+            color: #bbb;
+        }
+        
+        .contact-info i {
+            color: var(--secondary);
+            margin-top: 4px;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #2c387e;
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .featured-item.main {
+                flex-direction: column;
+            }
+            
+            .featured-item.main .featured-img,
+            .featured-item.main .featured-content {
+                width: 100%;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .culture-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .video-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header-tagline {
+                display: none;
+            }
+            
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: var(--primary);
+                flex-direction: column;
+                box-shadow: var(--shadow);
+                z-index: 100;
+            }
+            
+            .nav-links.active {
+                display: flex;
+            }
+            
+            .mobile-toggle {
+                display: block;
+            }
+            
+            .search-box {
+                display: none;
+            }
+            
+            .hero {
+                padding: 80px 0;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .breaking-container {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+            
+            .featured-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+            
+            .section-title h2 {
+                font-size: 1.5rem;
+            }
+            
+            .featured-content h3 {
+                font-size: 1.3rem;
+            }
+            
+            .latest-item {
+                flex-direction: column;
+            }
+            
+            .latest-img {
+                width: 100%;
+                height: 150px;
+                margin-right: 0;
+                margin-bottom: 15px;
+            }
+            
+            .video-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .logo {
+                flex-direction: column;
+                text-align: center;
+                gap: 10px;
+            }
+            
+            .logo-text h1 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="top-bar">
+            <div class="container">
+                <span><i class="fas fa-map-marker-alt"></i> Kota Palembang, Sumatera Selatan</span>
+                <div class="date-time">
+                    <span id="current-date"></span>
+                    <span id="current-time"></span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="header-main">
+            <div class="container">
+                <div class="header-content">
+                    <div class="logo">
+                        <div class="logo-icon">
+                            <i class="fas fa-newspaper"></i>
+                        </div>
+                        <div class="logo-text">
+                            <h1>Jurnal Palembang</h1>
+                            <p>Portal Berita Terkini Kota Palembang</p>
+                        </div>
+                    </div>
+                    <div class="header-tagline">
+                        <i class="fas fa-quote-left"></i> Menyajikan informasi akurat dan terpercaya dari Kota Pempek
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="main-nav">
+            <div class="container nav-container">
+                <ul class="nav-links" id="nav-links">
+                    <li><a href="#" class="active">Beranda</a></li>
+                    <li><a href="#">Palembang Hari Ini</a></li>
+                    <li><a href="#">Politik</a></li>
+                    <li><a href="#">Ekonomi</a></li>
+                    <li><a href="#">Budaya</a></li>
+                    <li><a href="#">Olahraga</a></li>
+                    <li><a href="#">Kuliner</a></li>
+                    <li><a href="#">Wisata</a></li>
+                </ul>
+                
+                <div class="nav-tools">
+                    <div class="search-box">
+                        <i class="fas fa-search"></i>
+                        <input type="text" placeholder="Cari berita...">
+                    </div>
+                    <div class="mobile-toggle" id="mobile-toggle">
+                        <i class="fas fa-bars"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Berita Terkini dan Terpercaya dari Kota Palembang</h1>
+                <p>Dapatkan informasi terupdate seputar perkembangan kota Palembang, kebijakan pemerintah, kegiatan masyarakat, budaya Melayu Palembang, dan berbagai peristiwa penting lainnya.</p>
+                <div class="hero-buttons">
+                    <a href="#berita-utama" class="btn">Baca Berita Hari Ini</a>
+                    <a href="#video" class="btn btn-secondary">Tonton Video Berita</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Breaking News -->
+    <section class="breaking-news">
+        <div class="container breaking-container">
+            <div class="breaking-label">
+                <i class="fas fa-bolt"></i> BERITA TERKINI
+            </div>
+            <div class="breaking-text">
+                <marquee>Walikota Palembang Resmikan Jembatan Musi II • Festival Pempek Palembang 2024 Akan Digelar Bulan Depan • Harga Ikan di Pasar 16 Ilir Stabil • Tim Sriwijaya FC Raih Kemenangan Penting</marquee>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <div class="container">
+        <div class="main-content">
+            <!-- Content Area -->
+            <div class="content-area">
+                <!-- Featured News -->
+                <div class="section-title">
+                    <h2>Berita Utama</h2>
+                </div>
+                
+                <div class="featured-news" id="berita-utama">
+                    <div class="featured-grid">
+                        <!-- Main Featured -->
+                        <div class="featured-item main">
+                            <img src="https://images.unsplash.com/photo-1599601953846-8a8d7245415c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Jembatan Musi Palembang" class="featured-img">
+                            <div class="featured-content">
+                                <span class="badge badge-news">UTAMA</span>
+                                <span class="badge badge-hot">TERBARU</span>
+                                <h3>Jembatan Musi II Palembang Resmi Dibuka untuk Umum</h3>
+                                <p>Jembatan Musi II yang menghubungkan kawasan Seberang Ulu dan Seberang Ilir resmi dibuka setelah melalui proses pembangunan selama 3 tahun. Jembatan ini diharapkan dapat mengurangi kemacetan di Jembatan Ampera.</p>
+                                <div class="news-meta">
+                                    <span><i class="far fa-clock"></i> 3 jam yang lalu</span>
+                                    <span><i class="far fa-eye"></i> 3.2k dilihat</span>
+                                    <span><i class="far fa-comment"></i> 87 komentar</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Featured 1 -->
+                        <div class="featured-item">
+                            <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ca4b?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Pempek Palembang" class="featured-img">
+                            <div class="featured-content">
+                                <span class="badge badge-feature">KULINER</span>
+                                <h3>Festival Pempek Palembang 2024 Akan Hadirkan 100 Variasi Pempek</h3>
+                                <p>Event tahunan yang dinantikan warga Palembang akan digelar di Jakabaring Sport City dengan menampilkan berbagai kreasi pempek dari para pelaku usaha kuliner.</p>
+                                <div class="news-meta">
+                                    <span><i class="far fa-clock"></i> 1 hari yang lalu</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Featured 2 -->
+                        <div class="featured-item">
+                            <img src="https://images.unsplash.com/photo-1542744095-fcf48d80b0fd?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Jakabaring Sport City" class="featured-img">
+                            <div class="featured-content">
+                                <span class="badge badge-news">OLAHRAGA</span>
+                                <h3>Jakabaring Sport City Jadi Tuan Rumah Turnamen Bulutangkis Nasional</h3>
+                                <p>Palembang terpilih sebagai tuan rumah kejuaraan bulutangkis tingkat nasional yang akan diikuti oleh atlet dari 25 provinsi di Indonesia.</p>
+                                <div class="news-meta">
+                                    <span><i class="far fa-clock"></i> 2 hari yang lalu</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Palembang Culture -->
+                <div class="palembang-culture">
+                    <h3 class="culture-title">
+                        <i class="fas fa-landmark"></i> Budaya Palembang
+                    </h3>
+                    <div class="culture-content">
+                        <img src="https://images.unsplash.com/photo-1528164344705-47542687000d?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Rumah Limas Palembang" class="culture-img">
+                        <div class="culture-text">
+                            <p><strong>Rumah Limas</strong> merupakan ikon arsitektur tradisional Palembang yang memiliki nilai filosofis tinggi. Dengan atap berbentuk limas dan ornamen khas Melayu Palembang, rumah ini mencerminkan kekayaan budaya daerah.</p>
+                            <p>Palembang juga dikenal dengan <strong>Songket</strong>, kain tenun tradisional yang menjadi warisan budaya tak benda Indonesia. Motif-motif songket Palembang memiliki makna filosofis yang dalam.</p>
+                            <a href="#" class="btn btn-outline">Baca Selengkapnya</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Latest News -->
+                <div class="section-title">
+                    <h2>Berita Terbaru</h2>
+                </div>
+                
+                <div class="latest-news">
+                    <div class="latest-list">
+                        <div class="latest-item">
+                            <img src="https://images.unsplash.com/photo-1586773860418-dc22f8b874bc?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="Berita terbaru" class="latest-img">
+                            <div class="latest-content">
+                                <h4>Pemkot Palembang Gelar Vaksinasi Gratis di 15 Puskesmas</h4>
+                                <div class="news-meta">
+                                    <span><i class="far fa-clock"></i> 2 jam lalu</span>
+                                    <span class="badge badge-news">KESEHATAN</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="latest-item">
+                            <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ca4b?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="Berita terbaru" class="latest-img">
+                            <div class="latest-content">
+                                <h4>Harga Bahan Baku Pempek Stabil di Pasar 16 Ilir</h4>
+                                <div class="news-meta">
+                                    <span><i class="far fa-clock"></i> 5 jam lalu</span>
+                                    <span class="badge badge-feature">EKONOMI</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="latest-item">
+                            <img src="https://images.unsplash.com/photo-1542744095-fcf48d80b0fd?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="Berita terbaru" class="latest-img">
+                            <div class="latest-content">
+                                <h4>Revitalisasi Taman Purbakala Kerajaan Sriwijaya Mulai Dilakukan</h4>
+                                <div class="news-meta">
+                                    <span><i class="far fa-clock"></i> 7 jam lalu</span>
+                                    <span class="badge badge-news">BUDAYA</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="latest-item">
+                            <img src="https://images.unsplash.com/photo-1599601953846-8a8d7245415c?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="Berita terbaru" class="latest-img">
+                            <div class="latest-content">
+                                <h4>Proyek LRT Palembang Fase 2 Capai 75% Pengerjaan</h4>
+                                <div class="news-meta">
+                                    <span><i class="far fa-clock"></i> 1 hari lalu</span>
+                                    <span class="badge badge-news">INFRASTRUKTUR</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Sidebar -->
+            <div class="sidebar">
+                <!-- Popular News -->
+                <div class="sidebar-widget">
+                    <h3 class="widget-title">Berita Populer</h3>
+                    <ul class="popular-list">
+                        <li>
+                            <div class="popular-number">1</div>
+                            <div>Proyek LRT Palembang Fase 2 Akan Rampung Tahun Depan</div>
+                        </li>
+                        <li>
+                            <div class="popular-number">2</div>
+                            <div>Rumah Makan Pempek Terbaik Versi Warga Palembang 2024</div>
+                        </li>
+                        <li>
+                            <div class="popular-number">3</div>
+                            <div>Penemuan Artefak Kerajaan Sriwijaya di Situs Karanganyar</div>
+                        </li>
+                        <li>
+                            <div class="popular-number">4</div>
+                            <div>Kebakaran Pasar 16 Ilir, Kerugian Capai Miliaran Rupiah</div>
+                        </li>
+                        <li>
+                            <div class="popular-number">5</div>
+                            <div>Walikota Palembang Terima Penghargaan Kota Heritage</div>
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Categories -->
+                <div class="sidebar-widget">
+                    <h3 class="widget-title">Kategori Berita</h3>
+                    <ul class="category-list">
+                        <li>
+                            <a href="#">
+                                <span>Palembang Hari Ini</span>
+                                <span class="category-count">56</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span>Politik</span>
+                                <span class="category-count">34</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span>Ekonomi</
